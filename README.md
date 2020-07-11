@@ -1,6 +1,15 @@
 # typora-theme-essay_cn
 一个简单的、为中文课程论文排版设计的[Typora](https://typora.io/)主题。 | A theme for Typora(a markdown editor), designed for chinese essay.
 
+## 特点 | Features
+
+1. 各级标题选取合适字体，更加美观
+2. 标题自动编号，又有了不必打开Word的理由
+3. 图表下方自动编号，专业严谨
+4. 表格采用三线表，简洁清晰
+5. A4页面设定，编辑器内所见即所得
+6. 提供.md格式的封面模板，写作->导出PDF全过程一处进行
+
 ## 文件概述 | Files
 
 - essay.css:普通Essay等可用主题
