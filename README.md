@@ -1,7 +1,13 @@
 # typora-theme-essay_cn
-一个简单的、为中文课程论文排版设计的Typora主题。 | A theme for Typora(a markdown editor), designed for chinese essay.
+一个简单的、为中文课程论文排版设计的[Typora](https://typora.io/)主题。 | A theme for Typora(a markdown editor), designed for chinese essay.
 
-[详细介绍 | Detailed Introduction(chinese)]()
+## 文件概述 | Files
+
+- essay.css:普通Essay等可用主题
+- article.css:尝试中的学术论文主题
+- cover_template.md：简单的Essay封面模板
+
+[详细介绍 | Detailed Introduction(chinese)](https://du33169.tech/notes/typoraTheme--Essay.html)
 
 ## 安装 | Installation
 
@@ -9,7 +15,7 @@
 
 太长不看 | short version:
 
-0. [点此 | click here]()下载主题文件 | download theme
+0. [点此 | click here](https://github.com/du33169/typora-theme-essay_cn/releases/latest)下载文件，并解压缩 | download file, and unzip
  
 1. 打开Typora偏好设置 |  File-Preference。（<kbd>Ctrl</kbd> +<kbd>,</kbd>）
  
@@ -21,4 +27,10 @@
 
 ## 预览 | Preview
 
-![效果图]()
+### Essay主题效果图
+
+![Essay效果图](https://du33169.tech/files/typoraTheme--Essay.assets/image-20200711161336734.png)
+
+### 封面模板效果图
+
+![cover](https://du33169.tech/files/typoraTheme--Essay.assets/cover_template_-after-1594443595844.png)
