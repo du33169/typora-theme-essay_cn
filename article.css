@@ -1,0 +1,190 @@
+/* 注意：这个主题并不完善，且不适用于导出 */
+/* 正文区基本属性 */
+#write {
+	font-family:宋体;
+	font-size:10.5pt;
+	max-width: 21cm; /*A4标准宽度*/
+	padding:2.54cm 3.18cm ; /*上下/左右 边距，参考了word的默认边距*/
+	border:1px solid #CCC; /* 添加一个淡灰色的边框 */
+	counter-reset: tableHead 0 imgHead 0;
+	column-count: 2;
+	column-gap: 25px;
+	/*column-width: 8cm;
+	display: inline-block;*/
+}
+h1,h2,h3,h4,h5,h6 {
+	font-weight:bold;
+}
+/* 标题属性 */
+h1 {
+	text-align:center;
+	column-span:all;
+	font-size:16pt;
+}
+h2 {
+	font-family:仿宋;
+	font-size:14pt;
+}
+h3 {
+	font-family:黑体;
+	font-size:10.5pt;
+}
+h4 {
+	font-family:楷体;
+	font-size:10.5pt;
+}
+/* 目录标题属性 */
+.md-toc-h2 {
+	font-family:仿宋;
+}
+.md-toc-h3 {
+	font-family:黑体;
+}
+.md-toc-h4 {
+	font-family:楷体;
+}
+#write blockquote{
+	column-span:all;
+	border-width: 1pt 0;
+	border-style:solid;
+	font-size:10.5pt;
+}
+#write blockquote:before{
+	font-size:10.5pt;
+	font-family:黑体;
+	content:"摘要:";
+	display:inline;
+}
+#write blockquote>:first-chlid{
+	display:inline;
+	border: solid;
+}
+/* 三线表 */
+#write figure{
+		column-span:all;
+}
+#write table{
+	border-top: 1.5pt solid;
+	border-bottom: 1.5pt solid;
+	font-family:宋体;
+	font-size:7.875pt;
+}
+
+#write thead{
+	border-bottom: 0.75pt solid;
+	font-family:黑体;
+	font-size:9pt;
+}
+/* 以下开始为自动编号 */
+/* 表格 */
+#write figure:after{
+	counter-increment: tableHead;
+	content: "表" counter(tableHead) " ";
+	text-align:center;
+	width:100%;
+	display:inline-block;
+}
+/* 图片，导出PDF时暂时无法显示 */
+#write .md-image:after{
+	counter-increment: imgHead;
+	content: "图" counter(imgHead) " ";
+	
+	text-align:center;
+	width:100%;
+	display:inline-block;
+}
+
+/* 编辑器内标题 */
+#write h1 {
+    counter-reset: h2;
+}#write h2 {
+    counter-reset: h3;
+}#write h3 {
+    counter-reset: h4;
+}#write h4 {
+    counter-reset: h5;
+}
+#write h2:before {
+    counter-increment: h2;
+    content:  counter(h2) ". ";
+}
+#write h3:before,
+h3.md-focus.md-heading:before /** override the default style for focused headings */ {
+    counter-increment: h3;
+    content:  counter(h2) "." counter(h3) ". ";
+}
+#write h4:before,
+h4.md-focus.md-heading:before {
+    counter-increment: h4;
+    content:  counter(h2) "." counter(h3) "." counter(h4) ". ";
+}
+/* 目录标题 */
+.md-toc-content .md-toc-h1 {
+    counter-reset: toc-h2;
+}.md-toc-content .md-toc-h2 {
+    counter-reset: toc-h3;
+}.md-toc-content .md-toc-h3 {
+    counter-reset: toc-h4;
+}.md-toc-content .md-toc-h4 {
+    counter-reset: toc-h5;
+} .md-toc-content .md-toc-h2:before {
+    counter-increment: toc-h2;
+    content:  counter(toc-h2) ". ";
+}
+.md-toc-content .md-toc-h3:before {
+    counter-increment: toc-h3;
+    content:  counter(toc-h2) "." counter(toc-h3) ". ";
+}
+.md-toc-content .md-toc-h4:before {
+    counter-increment: toc-h4;
+     content:  counter(toc-h2) "." counter(toc-h3) "." counter(toc-h4) ". ";
+}
+/* 大纲标题 */
+.sidebar-content .outline-h1 {
+    counter-reset: outline-h2;
+}
+.sidebar-content .outline-h2 {
+    counter-reset: outline-h3;
+}
+.sidebar-content .outline-h3 {
+    counter-reset: outline-h4;
+}
+.sidebar-content .outline-h4 {
+    counter-reset: outline-h5;
+} 
+.sidebar-content .outline-h2:before {
+    counter-increment: outline-h2;
+	content:  counter(outline-h2) ". ";
+}
+.sidebar-content .outline-h3:before {
+    counter-increment: outline-h3;
+    content:  counter(outline-h2) "." counter(outline-h3) ". ";
+}
+.sidebar-content .outline-h4:before {
+    counter-increment: outline-h4;
+    content:  counter(outline-h2) "." counter(outline-h3) "." counter(outline-h4) ". ";
+}
+
+/* override the default style for focused headings */
+#write>h3.md-focus:before,
+#write>h4.md-focus:before,
+#write>h5.md-focus:before,
+#write>h6.md-focus:before,
+h3.md-focus:before,
+h4.md-focus:before,
+h5.md-focus:before,
+h6.md-focus:before {
+    color: inherit;
+    border: inherit;
+    border-radius: inherit;
+    position: inherit;
+    left:initial;
+    float: none;
+    top:initial;
+    font-size: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+    vertical-align: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
