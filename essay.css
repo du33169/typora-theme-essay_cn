@@ -5,10 +5,24 @@
    max-width: 21cm; /*A4标准宽度*/
    padding:2.54cm 3.18cm ; /*上下/左右 边距，参考了word的默认边距*/
    border:1px solid #CCC; /* 添加一个淡灰色的边框 */
-   counter-reset: tableHead 0 imgHead 0;
+}
+@page{
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	margin-bottom:0;
+}
+#write p{
+	text-align:justify;
 }
 h1,h2,h3,h4,h5,h6 {
 	font-weight:bold;
+}
+blockquote{
+	font-family:楷体;
+	border-left:3px solid grey;
+	padding-left:10px;
+	font-color:grey;
 }
 /* 标题属性 */
 h1 {
@@ -44,10 +58,16 @@ h4 {
 	border-top: 1.5pt solid;
 	border-bottom: 1.5pt solid;
 	font-family:宋体;
-	font-size:7.875pt;
+	/*font-size:7.875pt;*/
+	font-size:9pt;
 	text-align:center;
 }
-
+#write table td{
+	padding:7px;
+}
+#write table tr{
+	padding:7px;
+}
 #write thead{
 	border-bottom: 0.75pt solid;
 	font-family:黑体;
@@ -55,7 +75,7 @@ h4 {
 }
 /* 以下开始为自动编号 */
 /* 表格自动编号 */
-#write figure:after{
+#write> figure:after{
 	counter-increment: tableHead;
 	content: "表" counter(tableHead) " ";
 	text-align:center;
@@ -63,7 +83,7 @@ h4 {
 	display:inline-block;
 }
 /* 图片自动编号，导出PDF时暂时无法显示 */
-#write .md-image:after{
+#write> .md-image:after{
 	counter-increment: imgHead;
 	content: "图" counter(imgHead) " ";
 	
@@ -73,15 +93,20 @@ h4 {
 }
 
 /* 编辑器内标题 */
+#write{
+    counter-reset: tableHead 0 imgHead 0;
+    counter-reset: h2 h3 h4;/*修复缺失上级标题时无法递增*/
+}
 #write h1 {
     counter-reset: h2;
-}#write h2 {
+}
+#write h2 {
     counter-reset: h3;
-}#write h3 {
+}
+#write h3 {
     counter-reset: h4;
-}#write h4 {
-    counter-reset: h5;
-} #write h2:before {
+}
+#write h2:before {
     counter-increment: h2;
     content: counter(h2, cjk-ideographic) "、";
 }
@@ -94,15 +119,19 @@ h4 {
     content: counter(h4, decimal) ". ";
 }
 /* 目录标题 */
+.md-toc-content{
+	counter-reset: toc-h2 toc-h3 toc-h4 ;/*修复缺失上级标题时无法递增*/
+}
 .md-toc-content .md-toc-h1 {
     counter-reset: toc-h2;
-}.md-toc-content .md-toc-h2 {
+}
+.md-toc-content .md-toc-h2 {
     counter-reset: toc-h3;
-}.md-toc-content .md-toc-h3 {
+}
+.md-toc-content .md-toc-h3 {
     counter-reset: toc-h4;
-}.md-toc-content .md-toc-h4 {
-    counter-reset: toc-h5;
-} .md-toc-content .md-toc-h2:before {
+}
+.md-toc-content .md-toc-h2:before {
     counter-increment: toc-h2;
     content: counter(toc-h2, cjk-ideographic) "、";
 }
@@ -115,15 +144,19 @@ h4 {
     content: counter(toc-h4, decimal) ". ";
 }
 /* 大纲标题 */
+.sidebar-content{
+    counter-reset: outline-h2 outline-h3 outline-h4;/*修复缺失上级标题时无法递增*/
+}
 .sidebar-content .outline-h1 {
     counter-reset: outline-h2;
-}.sidebar-content .outline-h2 {
+}
+.sidebar-content .outline-h2 {
     counter-reset: outline-h3;
-}.sidebar-content .outline-h3 {
+}
+.sidebar-content .outline-h3 {
     counter-reset: outline-h4;
-}.sidebar-content .outline-h4 {
-    counter-reset: outline-h5;
-} .sidebar-content .outline-h2 .outline-label:before {
+}
+.sidebar-content .outline-h2 .outline-label:before {
     counter-increment: outline-h2;
     content: counter(outline-h2, cjk-ideographic) "、";
 }
