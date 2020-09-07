@@ -1,23 +1,41 @@
+
+body{
+    /* border:1px solid black; for debug */
+    padding:0 !important;
+    margin:0 !important;
+}
 /* 正文区基本属性 */
 #write {
    font-family:宋体;
    font-size:10.5pt;
    max-width: 21cm; /*A4标准宽度*/
-   padding:2.54cm 3.18cm ; /*上下/左右 边距，参考了word的默认边距*/
-   border:1px solid #CCC; /* 添加一个淡灰色的边框 */
+   border:1px solid #CCC ; /* 添加一个淡灰色的边框 */
+}
+/*页边距处理*/
+@media screen{
+    #write{
+       padding:2.54cm 3.18cm; 
+    }
+}
+@media print{
+    #write{
+       padding:0 3.18cm !important; 
+       margin:0 !important;
+    }
 }
 @page{
-	margin-left:0;
-	margin-right:0;
-	margin-top:0;
-	margin-bottom:0;
+	margin:2.54cm 0; /*上下/左右 边距，参考了word的默认边距*/
 }
+
+
 #write p{
 	text-align:justify;
 }
 h1,h2,h3,h4,h5,h6 {
 	font-weight:bold;
+    page-break-after:avoid !important;
 }
+/*引言*/
 blockquote{
 	font-family:楷体;
 	border-left:3px solid grey;
@@ -61,6 +79,7 @@ h4 {
 	/*font-size:7.875pt;*/
 	font-size:9pt;
 	text-align:center;
+    page-break-inside:avoid;
 }
 #write table td{
 	padding:7px;
@@ -73,30 +92,15 @@ h4 {
 	font-family:黑体;
 	font-size:9pt;
 }
+img{
+    page-break-inside:avoid;
+}
 /* 以下开始为自动编号 */
-/* 表格自动编号 */
-#write> figure:after{
-	counter-increment: tableHead;
-	content: "表" counter(tableHead) " ";
-	text-align:center;
-	width:100%;
-	display:inline-block;
-}
-/* 图片自动编号，导出PDF时暂时无法显示 */
-#write> .md-image:after{
-	counter-increment: imgHead;
-	content: "图" counter(imgHead) " ";
-	
-	text-align:center;
-	width:100%;
-	display:inline-block;
-}
-
-/* 编辑器内标题 */
 #write{
-    counter-reset: tableHead 0 imgHead 0;
+    counter-reset: tableHead imgHead !important;
     counter-reset: h2 h3 h4;/*修复缺失上级标题时无法递增*/
 }
+/* 编辑器内标题-重置 */
 #write h1 {
     counter-reset: h2;
 }
@@ -106,6 +110,23 @@ h4 {
 #write h3 {
     counter-reset: h4;
 }
+/* 表格自动编号 */
+#write figure:after{
+	counter-increment: tableHead;
+	content: "表" counter(tableHead) " ";
+	text-align:center;
+	width:100%;
+	display:inline-block;
+}
+/* 图片自动编号，导出PDF时暂时无法显示 */
+#write .md-image:after{
+	counter-increment: imgHead;
+	content: "图" counter(imgHead) " " !important;
+	text-align:center;
+	width:100%;
+	display:inline-block;
+}
+/* 编辑器内标题-显示 */
 #write h2:before {
     counter-increment: h2;
     content: counter(h2, cjk-ideographic) "、";
@@ -118,7 +139,7 @@ h4 {
     counter-increment: h4;
     content: counter(h4, decimal) ". ";
 }
-/* 目录标题 */
+/* 目录标题-重置 */
 .md-toc-content{
 	counter-reset: toc-h2 toc-h3 toc-h4 ;/*修复缺失上级标题时无法递增*/
 }
@@ -131,6 +152,7 @@ h4 {
 .md-toc-content .md-toc-h3 {
     counter-reset: toc-h4;
 }
+/* 目录标题-显示*/
 .md-toc-content .md-toc-h2:before {
     counter-increment: toc-h2;
     content: counter(toc-h2, cjk-ideographic) "、";
@@ -143,7 +165,7 @@ h4 {
     counter-increment: toc-h4;
     content: counter(toc-h4, decimal) ". ";
 }
-/* 大纲标题 */
+/* 大纲标题 -重置*/
 .sidebar-content{
     counter-reset: outline-h2 outline-h3 outline-h4;/*修复缺失上级标题时无法递增*/
 }
@@ -156,6 +178,7 @@ h4 {
 .sidebar-content .outline-h3 {
     counter-reset: outline-h4;
 }
+/* 大纲标题 -显示*/
 .sidebar-content .outline-h2 .outline-label:before {
     counter-increment: outline-h2;
     content: counter(outline-h2, cjk-ideographic) "、";
