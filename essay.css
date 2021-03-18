@@ -1,4 +1,4 @@
-
+/* page-break: Firefox, Chrome, 以及 Safari 不支持属性值 "avoid". */
 body{
     /* border:1px solid black; for debug */
     padding:0 !important;
@@ -7,7 +7,7 @@ body{
 /* 正文区基本属性 */
 #write {
    font-family:宋体;
-   font-size:10.5pt;
+   font-size:12pt;
    max-width: 21cm; /*A4标准宽度*/
    border:1px solid #CCC ; /* 添加一个淡灰色的边框 */
 }
@@ -33,33 +33,36 @@ body{
 }
 h1,h2,h3,h4,h5,h6 {
 	font-weight:bold;
+	@media print{
     page-break-after:avoid !important;
+	}
 }
 /*引言*/
 blockquote{
 	font-family:楷体;
 	border-left:3px solid grey;
 	padding-left:10px;
-	font-color:grey;
+	color:grey;
 }
 /* 标题属性 */
 h1 {
 	text-align:center;
-	font-size:16pt;
+    font-size:18pt;
+    /*page-break-before:always!important;*/
 }
 h2 {
 	font-family:仿宋;
 	text-align:center;
-	font-size:14pt;
+	font-size:16pt;
 }
 h3 {
 	font-family:黑体;
-	font-size:10.5pt;
+	font-size:14pt;
 }
 h4 {
 	text-align:center;
 	font-family:楷体;
-	font-size:10.5pt;
+	font-size:14pt;
 }
 /* 目录标题属性 */
 .md-toc-h2 {
@@ -77,9 +80,9 @@ h4 {
 	border-bottom: 1.5pt solid;
 	font-family:宋体;
 	/*font-size:7.875pt;*/
-	font-size:9pt;
+	font-size:10.5pt;
 	text-align:center;
-    page-break-inside:avoid;
+    page-break-inside:avoid!important;
 }
 #write table td{
 	padding:7px;
@@ -90,10 +93,12 @@ h4 {
 #write thead{
 	border-bottom: 0.75pt solid;
 	font-family:黑体;
-	font-size:9pt;
+	font-size:10.5pt;
 }
-img{
-    page-break-inside:avoid;
+@media print{
+	img{
+		page-break-inside:avoid !important;
+	}
 }
 /* 以下开始为自动编号 */
 #write{
@@ -141,7 +146,27 @@ img{
 }
 /* 目录标题-重置 */
 .md-toc-content{
-	counter-reset: toc-h2 toc-h3 toc-h4 ;/*修复缺失上级标题时无法递增*/
+    margin-left: 8em;
+    counter-reset: toc-h2 toc-h3 toc-h4 ;/*修复缺失上级标题时无法递增*/
+    page-break-after: always;
+}
+.md-toc::before{
+    content: "目录";
+    font-family:仿宋;
+	text-align:center;
+    font-size:18pt;
+    display:inline-block;
+    font-weight: bold;
+    width: 100%;
+}
+.md-toc-inner{
+    margin-left:0 !important;
+    color:black !important;
+}
+.md-toc-item{
+    color:black !important;
+    font-size: 11pt;
+    font-family: "宋体";
 }
 .md-toc-content .md-toc-h1 {
     counter-reset: toc-h2;
@@ -151,6 +176,12 @@ img{
 }
 .md-toc-content .md-toc-h3 {
     counter-reset: toc-h4;
+}
+.md-toc-content .md-toc-h4 {
+    display: none;
+}
+.md-toc-content .md-toc-h5 {
+    display: none;
 }
 /* 目录标题-显示*/
 .md-toc-content .md-toc-h2:before {
