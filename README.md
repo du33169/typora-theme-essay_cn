@@ -39,7 +39,7 @@
 
 ### Essay主题效果图
 
-![Essay效果图](README.assets/image-20200711161336734.png)
+![Essay效果图](https://gh-proxy.du33169.workers.dev/https://raw.githubusercontent.com/du33169/typora-theme-essay_cn/master/README.assets/image-20200711161336734.png)
 
 ### 封面模板效果图
 
