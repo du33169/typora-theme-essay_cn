@@ -40,9 +40,9 @@ h1,h2,h3,h4,h5,h6 {
 /*引言*/
 blockquote{
 	font-family:楷体;
-	border-left:3px solid grey;
+	/* border-left:3px solid black; */
 	padding-left:10px;
-	color:grey;
+	/*color:grey;*/
 }
 /* 标题属性 */
 h1 {
@@ -85,35 +85,82 @@ h4 {
     page-break-inside:avoid!important;
 }
 #write table td{
-	padding:7px;
+	padding:2px;
 }
 #write table tr{
-	padding:7px;
+	/* padding:3px; */
 }
 #write thead{
 	border-bottom: 0.75pt solid;
 	font-family:黑体;
 	font-size:10.5pt;
 }
-@media print{
+/* @media print{
 	img{
-		page-break-inside:avoid !important;
+        page-break-inside:avoid !important;
+        break-inside: avoid !important;
 	}
+} */
+img{
+    page-break-inside:avoid !important;
+    break-inside: avoid !important;
+}
+/* 引用和尾注 */
+sup.md-footnote{
+    background-color: transparent;
+    padding:0;
+}
+sup.md-footnote>a::before{
+    content:'[';
+}
+sup.md-footnote>a::after{
+    content:']';
+}
+
+
+div.footnotes-area{
+    font-family:宋体;
+    font-size:12pt !important;
+    color: black;
+    page-break-inside:avoid!important;
+}
+div.footnotes-area::before{
+/*     content: "参考文献"; */
+	text-align:center;
+	width:100%;
+    display:inline-block;
+    font-size:16pt;
+    font-family: 仿宋;
+    font-weight: bold;
+}
+div.footnotes-area>hr{
+    display:none;
+}
+div.footnote-line{
+    font-family:宋体;
+    font-size:10.5pt !important;
+    color: black;     
+    margin-top: 0;
+}
+span.md-fn-count::before{
+    content:'[';
+}
+span.md-fn-count::after{
+    content:']';
 }
 /* 以下开始为自动编号 */
 #write{
-    counter-reset: tableHead imgHead !important;
-    counter-reset: h2 h3 h4;/*修复缺失上级标题时无法递增*/
+    counter-reset: tableHead imgHead write-h2 write-h3 write-h4!important;/*修复缺失上级标题时无法递增*/
 }
 /* 编辑器内标题-重置 */
 #write h1 {
-    counter-reset: h2;
+    counter-reset: write-h2;
 }
 #write h2 {
-    counter-reset: h3;
+    counter-reset: write-h3;
 }
 #write h3 {
-    counter-reset: h4;
+    counter-reset: write-h4;
 }
 /* 表格自动编号 */
 #write figure:after{
@@ -126,23 +173,23 @@ h4 {
 /* 图片自动编号，导出PDF时暂时无法显示 */
 #write .md-image:after{
 	counter-increment: imgHead;
-	content: "图" counter(imgHead) " " !important;
+	content: "图" counter(imgHead) attr(alt) " " !important;
 	text-align:center;
 	width:100%;
 	display:inline-block;
 }
 /* 编辑器内标题-显示 */
 #write h2:before {
-    counter-increment: h2;
-    content: counter(h2, cjk-ideographic) "、";
+    counter-increment: write-h2;
+    content: counter(write-h2, cjk-ideographic) "、";
 }
 #write h3:before {
-    counter-increment: h3;
-    content: "（" counter(h3, cjk-ideographic) "）";
+    counter-increment: write-h3;
+    content: "（" counter(write-h3, cjk-ideographic) "）";
 }
 #write h4:before {
-    counter-increment: h4;
-    content: counter(h4, decimal) ". ";
+    counter-increment: write-h4;
+    content: counter(write-h4, decimal) ". ";
 }
 /* 目录标题-重置 */
 .md-toc-content{
