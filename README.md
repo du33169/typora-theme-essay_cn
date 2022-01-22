@@ -34,8 +34,9 @@
 
 - essay.css:普通课程论文可用主题
 - article.css:仿学术期刊主题（更新没那么及时）
-- cover_template/cover_template.md：简单的论文封面模板
-- essay.docx: 用于导出为word文档的模板
+- templates/cover_page/cover_template.md：简单的论文封面模板
+- templates/Word_style/word_ref.docx: 用于导出为word文档的模板
+- examples/essay_sample/essay_sample.md：一个简单的示例文档
 
 ## 细节展示
 
@@ -51,13 +52,13 @@
 
 #### 编辑器内
 
-如下是编辑器内样式，可以注意到尾注的标识符可以自定便于查找，而且内容可以直接附在引用位置附近便于编辑；
+如下是编辑器内样式，typora中尾注的标识符可以自定便于查找，而且内容可以直接附在引用位置附近便于编辑；
 
 ![尾注，编辑器内](README.assets/footnote-edit.png)
 
 #### 导出效果
 
-如下是导出为PDF后的效果，可以发现自定义的标识符已经自动转换为标号，引用的内容也自动归集到了文章最后：
+如下是导出为PDF后的效果，typora会将自定义的标识符自动转换为标号，引用的内容也自动归集到了文章最后：
 
 ![尾注，导出效果](README.assets/footnote-export.png)
 
@@ -67,18 +68,26 @@
 
 ## 封面模板
 
-cover_template目录下的cover_template.md为论文封面模板，利用了Markdown对内嵌HTML的支持。复制其中的HTML粘贴到你的Markdown文档开头，并修改校标、校名、论文各项信息，导出时即可拥有美观的封面页。（设置了自动分页，正文内容不会挤到封面中）
+templates/cover_page目录下的cover_template.md为论文封面模板，利用了Markdown对内嵌HTML的支持。
+
+### 封面使用方式
+
+复制其中的HTML，粘贴到你的Markdown文档开头，并修改校标、校名、论文各项信息，导出时即可拥有美观的封面页。（设置了自动分页，正文内容不会挤到封面中）
+
+步骤如下所示(除校标和校名图片外，使用中括号[ ]标注的字段均可修改）：
+
+![cover_usage](templates/cover_page/cover_usage.png)
 
 ### 效果图
 
-![cover](README.assets/cover_template_sample.png)
+![cover](templates/cover_page/cover_sample.png)
 
 ## Word转换模板
 
-essay.docx是按本主题设计的word模板文件，可以使用pandoc将markdown源文件导出为**基本**符合主题格式的docx文件，命令如下(参见[pandoc's user guide](https://pandoc.org/MANUAL.html#option--reference-doc))：
+word_ref.docx是按本主题设计的word模板文件，可以使用pandoc将markdown源文件导出为**基本**符合主题格式的docx文件，命令如下(参见[pandoc's user guide](https://pandoc.org/MANUAL.html#option--reference-doc))：
 
 ```bash
-pandoc -i xxx.md --reference-doc essay.docx xxx.docx
+pandoc -i xxx.md --reference-doc word_ref.docx xxx.docx
 ```
 
 也可以利用新版typora的自定义导出功能将本命令添加到导出菜单中。
